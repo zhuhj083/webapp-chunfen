@@ -43,7 +43,7 @@
   </dependencies>
 
   <build>
-    <finalName>webapp-zhj</finalName>
+    <finalName>webapp-chunfen</finalName>
     <plugins>
       <plugin>
         <groupId>org.mortbay.jetty</groupId>

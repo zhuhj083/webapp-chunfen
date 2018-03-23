@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +19,10 @@ import java.util.Date;
 
 @Controller
 public class IndexController {
-
     @Autowired
     public SimpleDateFormat simpleDateFormat ;
 
-    @RequestMapping(value = "index")
+    @RequestMapping(value = "/")
     public  String index(HttpServletRequest request , HttpServletResponse response){
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
         User user = (User) ac.getBean("user");
@@ -30,5 +30,12 @@ public class IndexController {
         request.setAttribute("user", user);
         System.out.println("---------hello world----------------");
         return "index";
+    }
+
+    @RequestMapping("hello")
+    @ResponseBody
+    public  String hello(){
+        System.out.println(simpleDateFormat.format(new Date()));
+        return  "hello";
     }
 }
