@@ -1,0 +1,15 @@
+<configuration>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{H:mm:ss.SSS} %-5level [%logger{16}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="OP" level="info"/>
+    <logger name="com.zhj" level="info"/>
+
+    <root level="warn">
+        <appender-ref ref="Console"/>
+    </root>
+</configuration>
+
