@@ -9,6 +9,6 @@
 时间:${time}&nbsp;&nbsp;&nbsp;
 user:${user}
 <br>
-<<a href="www.sogou.com">搜狗搜索</a>
+<a href="www.sogou.com">搜狗搜索</a>
 </body>
 </html>
