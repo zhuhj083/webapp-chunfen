@@ -32,10 +32,7 @@ public class IndexController {
     public  String index(HttpServletRequest request , HttpServletResponse response,@ModelAttribute("salary")Salary salary ,Map<String,Object> map){
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
         User user = (User) ac.getBean("user");
-        request.setAttribute("time", simpleDateFormat.format(new Date()));
         request.setAttribute("user", user);
-        System.out.println("---------hello world----------------");
-
         map.put("salary", salary);
         return "index";
     }
@@ -50,26 +47,48 @@ public class IndexController {
 
     private static final double ShebaoJishu = 23118;
     private static final double GongjijinJishu = 23118;
+
+    private static final double ShebaoJishuChengdu = 15333;
+    private static final double GongjijinJishuChengdu = 20972;
     @RequestMapping(value = "tax",method = RequestMethod.POST)
-    public String tax(@Valid Salary salary , Errors  errors , Map<String,Object> map ){
+    public String tax(@Valid Salary salary , Errors  errors , String city , Map<String,Object> map ){
         if(errors.hasErrors()) {
             return "index";
         }
 
+        boolean isBeijing = true;
+        if("028".equals(city)){
+            isBeijing = false ;
+        }
+        System.out.println("city="+city);
+
+
         double shouru =  salary.getShouru();
         double sbjs = shouru;
         double gjjjs = shouru ;
-        if(sbjs > ShebaoJishu){
-            sbjs = ShebaoJishu ;
-        }
-        if(gjjjs > GongjijinJishu){
-            gjjjs = GongjijinJishu ;
+
+        if (isBeijing){
+            if(sbjs > ShebaoJishu){
+                sbjs = ShebaoJishu ;
+            }
+            if(gjjjs > GongjijinJishu){
+                gjjjs = GongjijinJishu ;
+            }
+        }else{
+            if(sbjs > ShebaoJishuChengdu){
+                sbjs = ShebaoJishuChengdu ;
+            }
+            if(gjjjs > GongjijinJishuChengdu){
+                gjjjs = GongjijinJishuChengdu ;
+            }
         }
 
-        double yanglao = 0.08 * sbjs ;
-        double yiliao = 0.02 * sbjs;
-        double shiye = 0.002 * sbjs;
-        double gongjijin = 0.12 * gjjjs;
+        double yanglao = isBeijing ? 0.08 * sbjs :0.08 * sbjs ;
+        double yiliao = isBeijing ? 0.02 * sbjs :  0.02 * sbjs;
+        double shiye = isBeijing ? 0.002 * sbjs : 0.004 * sbjs;
+        double gongjijin = isBeijing ? 0.12  * sbjs :   0.06 * gjjjs;
+
+
         double xiaoji = yanglao + yiliao + shiye +  gongjijin ;
         double jiaoshuijine = shouru - xiaoji ;
 

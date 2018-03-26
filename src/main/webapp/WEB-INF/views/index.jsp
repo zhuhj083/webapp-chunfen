@@ -4,23 +4,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Navyblue</title>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <script src="http://www.jq22.com/jquery/jquery-1.9.1.js"></script>
 </head>
 <body>
 <div>
-    时间:${time}&nbsp;&nbsp;&nbsp;
+    时间 : <span id="times"></span>
 </div>
 <br><br>
 <div>
-    北京个税计算: 请输入您的税前收入：
+    收入计算: 请输入您的税前收入：
     <br>
     <form:form action="/tax" method="post"  modelAttribute="salary" >
         <form:input path="shouru"  ></form:input><form:errors path="shouru"></form:errors>
         <br>
-        <input align="right" type="submit" value="提交"/>
+        <input type="radio" name="city" value="010" checked />北京
+        <input type="radio" name="city" value="028">成都
+        <br><br>
+        <input type="submit" value="提交"/>
     </form:form>
 </div>
+<script type="application/javascript">
+    function getTime() {
+        var time = new Date();
+        $("#times").html(time.toLocaleString());
+    }
+    $(function(){
+        setInterval("getTime()",1000);
+    });
+</script>
 
 
 </body>
