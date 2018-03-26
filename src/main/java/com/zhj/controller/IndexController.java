@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,14 +29,14 @@ public class IndexController {
     public SimpleDateFormat simpleDateFormat ;
 
     @RequestMapping(value = "/")
-    public  String index(HttpServletRequest request , HttpServletResponse response,Map<String,Object> map){
+    public  String index(HttpServletRequest request , HttpServletResponse response,@ModelAttribute("salary")Salary salary ,Map<String,Object> map){
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
         User user = (User) ac.getBean("user");
         request.setAttribute("time", simpleDateFormat.format(new Date()));
         request.setAttribute("user", user);
         System.out.println("---------hello world----------------");
 
-        map.put("salary", new Salary());
+        map.put("salary", salary);
         return "index";
     }
 
