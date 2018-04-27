@@ -50,7 +50,8 @@ public class IndexController {
 
     private static final double ShebaoJishuChengdu = 15333;
     private static final double GongjijinJishuChengdu = 20972;
-    @RequestMapping(value = "tax",method = RequestMethod.POST)
+
+    @RequestMapping(value = "tax",method = RequestMethod.GET)
     public String tax(@Valid Salary salary , Errors  errors , String city , Map<String,Object> map ){
         if(errors.hasErrors()) {
             return "index";

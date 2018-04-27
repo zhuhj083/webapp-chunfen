@@ -17,7 +17,7 @@
 <div>
     收入计算: 请输入您的税前收入：
     <br>
-    <form:form action="/tax" method="post"  modelAttribute="salary" >
+    <form:form action="/tax" method="get"  modelAttribute="salary" >
         <form:input path="shouru"  ></form:input><form:errors path="shouru"></form:errors>
         <br>
         <input type="radio" name="city" value="010" checked />北京
