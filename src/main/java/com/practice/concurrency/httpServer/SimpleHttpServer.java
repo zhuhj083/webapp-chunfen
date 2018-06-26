@@ -1,4 +1,4 @@
-package com.practice.concurrency.HttpServer;
+package com.practice.concurrency.httpServer;
 
 
 import com.practice.concurrency.threadPool.DefaultThreadPool;
