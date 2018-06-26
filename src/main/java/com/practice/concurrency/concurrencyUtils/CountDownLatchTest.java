@@ -1,6 +1,4 @@
-package com.test.concurrency.concurrencyUtils;
-
-import com.test.util.SleepUtils;
+package com.practice.concurrency.concurrencyUtils;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

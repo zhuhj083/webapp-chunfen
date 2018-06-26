@@ -1,10 +1,10 @@
-package com.test.concurrency.concurrencyUtils;
+package com.practice.concurrency.concurrencyUtils;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class CyclicBarrierTest2 {
-    static CyclicBarrier c = new CyclicBarrier(2,new A());
+public class CyclicBarrierTest {
+    static CyclicBarrier c = new CyclicBarrier(3);
 
     public static void main(String[] args) {
         new Thread(new Runnable() {
@@ -12,7 +12,9 @@ public class CyclicBarrierTest2 {
             public void run() {
                 try {
                     c.await();
-                } catch (Exception e) {
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
                 System.out.println(1);
@@ -27,14 +29,5 @@ public class CyclicBarrierTest2 {
             e.printStackTrace();
         }
         System.out.println(2);
-
-    }
-
-
-    static class A implements Runnable{
-        @Override
-        public void run() {
-            System.out.println(3);
-        }
     }
 }

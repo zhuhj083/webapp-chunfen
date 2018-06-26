@@ -1,4 +1,4 @@
-package com.test.concurrency.concurrencyContainer;
+package com.practice.concurrency.concurrencyContainer;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
