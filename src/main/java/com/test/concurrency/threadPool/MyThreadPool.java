@@ -1,6 +1,6 @@
 package com.test.concurrency.threadPool;
 
-public interface ThreadPool<Job extends  Runnable> {
+public interface MyThreadPool<Job extends  Runnable> {
     //执行一个Job，这个Job需要实现Runnable
     void execute(Job job);
 

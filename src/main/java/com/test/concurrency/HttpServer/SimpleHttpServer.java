@@ -2,7 +2,7 @@ package com.test.concurrency.HttpServer;
 
 
 import com.test.concurrency.threadPool.DefaultThreadPool;
-import com.test.concurrency.threadPool.ThreadPool;
+import com.test.concurrency.threadPool.MyThreadPool;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -14,7 +14,7 @@ import java.net.Socket;
 //这样使得web服务器能够同时处理多个客户端的请求
 public class SimpleHttpServer {
     //处理HttpRequest的线程池
-    static ThreadPool<HttpRequestHandler> threadPool = new DefaultThreadPool<HttpRequestHandler>(1);
+    static MyThreadPool<HttpRequestHandler> threadPool = new DefaultThreadPool<HttpRequestHandler>(1);
 
     //SimpleHttpServer的根路径
     static String basePath;

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> {
+public class DefaultThreadPool<Job extends Runnable> implements MyThreadPool<Job> {
     //线程池的最大限制数
     private static final int MAX_WORKER_NUMBERS = 10;
     //线程池的最小数量
