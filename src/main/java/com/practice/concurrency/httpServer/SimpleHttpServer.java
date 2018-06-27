@@ -74,7 +74,7 @@ public class SimpleHttpServer {
                         baos.write(i);
                     }
                     byte[] array = baos.toByteArray();
-                   ; out.println("HTTP/1.1 200 OK");
+                    out.println("HTTP/1.1 200 OK");
                     out.println("Server:Molly");
                     out.println("Context-Type:image/jpeg");
                     out.println("Context-Length:"+array.length);
