@@ -22,6 +22,7 @@ public class Queue<T> implements Iterable<T> {
 
     public boolean isEmpty(){
         return first == null ; //或 N==0
+
     }
 
     public int size(){
