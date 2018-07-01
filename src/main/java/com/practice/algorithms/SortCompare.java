@@ -14,6 +14,9 @@ public class SortCompare {
         if (alg.equals("Selection")) SelectionSort.sort(a);
         if (alg.equals("Shell")) ShellSort.sort(a);
         if (alg.equals("Merge")) MergeSort.sort(a);
+        if (alg.equals("MergeBU")) MergeBUSort.sort(a);
+        if (alg.equals("Quick")) QuickSort.sort(a);
+        if (alg.equals("Heap")) QuickSort.sort(a);
 
         return timer.elapsedTime();
     }
@@ -34,26 +37,33 @@ public class SortCompare {
     public static void main(String[] args) {
 //        String alg1 = "Insertion";
 //        String alg2 = "Selection";
-        String alg3 = "Shell";
+//        String alg3 = "Shell";
         String alg4 = "Merge";
+//        String alg5 = "MergeBU";
+        String alg6 = "Quick";
+        String alg7 = "Heap";
 
         int N = 1000000;
         int T = 10 ;
 
 //        double t1 = timeRandomInput(alg1,N,T);
 //        double t2 = timeRandomInput(alg2,N,T);
-        double t3 = timeRandomInput(alg3,N,T);
+//        double t3 = timeRandomInput(alg3,N,T);
         double t4 = timeRandomInput(alg4,N,T);
+//        double t5 = timeRandomInput(alg5,N,T);
+        double t6 = timeRandomInput(alg6,N,T);
+        double t7 = timeRandomInput(alg7,N,T);
 
 //        System.out.println(t1);
 //        System.out.println(t2);
-        System.out.println(t3);
+//        System.out.println(t3);
         System.out.println(t4);
+//        System.out.println(t5);
+        System.out.println(t6);
+        System.out.println(t7);
 
 //        StdOut.printf("For %d random Doubles\n  %s is", N ,alg1);
 //        StdOut.printf(" %.1f times faster than %s\n" , t2/t1 ,alg2);
-
-
 
     }
     
