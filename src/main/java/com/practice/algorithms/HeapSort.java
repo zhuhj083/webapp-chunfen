@@ -1,7 +1,5 @@
 package com.practice.algorithms;
 
-import edu.princeton.cs.algs4.StdOut;
-
 public class HeapSort {
 
     public static void main(String[] args) {
@@ -58,9 +56,9 @@ public class HeapSort {
     private static void show(Comparable[] a){
         //单行中打印数组
         for (int i = 0; i < a.length; i++) {
-            StdOut.print(a[i] + " ");
+            System.out.print(a[i] + " ");
         }
-        StdOut.println();
+        System.out.println();
     }
 
     public static boolean isSorted(Comparable[] a){
@@ -70,7 +68,5 @@ public class HeapSort {
         }
         return true;
     }
-
-
 
 }

@@ -56,7 +56,6 @@ public class Test {
 //        StdOut.println(c);
 //        StdOut.println(box.area());
 
-
     }
 
 }

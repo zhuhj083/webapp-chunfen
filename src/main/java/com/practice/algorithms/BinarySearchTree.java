@@ -1,6 +1,5 @@
 package com.practice.algorithms;
 
-import edu.princeton.cs.algs4.BinarySearchST;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
