@@ -137,8 +137,8 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value>{
         if (cmp == 0 )
             return x;
         if (cmp > 0 )
-            return floor(x.right,key);
-        Node t = floor(x.left,key);
+            return ceiling(x.right,key);
+        Node t = ceiling(x.left,key);
         if (t != null)
             return t ;
         else

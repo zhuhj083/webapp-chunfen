@@ -110,31 +110,6 @@ public class RedBlackBST<Key extends  Comparable<Key>,Value> {
         return h ;
     }
 
-//    /**
-//     * 在沿着树的最左路径向下的过程中实现变换
-//     * 保证当前节点不是2-节点
-//     */
-//    public void deleteMin(){
-//        if (!isRed(root.left) && !isRed(root.right)){
-//            root.color = RED;
-//        }
-//        root = deleteMin(root);
-//        if (!isEmpty())
-//            root.color=BLACK;
-//    }
-//
-//    /**
-//     * 假设加点h为红色，h.left 和 h,left.left 都是黑色
-//     * 将h,left或h,left的子节点之一变红
-//     */
-//    private Node moveRedLeft(Node h){
-//        flipColors(h);
-//        if (isRed(h.right.left)){
-//
-//        }
-//    }
-
-
     public  int size(){
         return size(root);
     }
