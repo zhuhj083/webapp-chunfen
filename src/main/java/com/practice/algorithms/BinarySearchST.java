@@ -1,5 +1,8 @@
 package com.practice.algorithms;
 
+/**
+ * 二分查找 有序数组
+ */
 public class BinarySearchST<Key extends Comparable<Key>,Value> {
     private Key[] keys;
     private Value[] values;
