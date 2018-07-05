@@ -38,6 +38,10 @@ public class SeparateChainingHashST<Key,Value> {
         st[hash(key)].put(key,value);
     }
 
+    public int size(){
+        return N ;
+    }
+
     public void delete(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("argument to delete() is null");

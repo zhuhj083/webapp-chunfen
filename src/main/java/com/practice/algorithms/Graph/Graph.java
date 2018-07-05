@@ -4,7 +4,9 @@ import com.practice.algorithms.Bag;
 import edu.princeton.cs.algs4.In;
 
 /**
- * Created by zhj on 2018/7/4.
+ * 邻接表 表示图
+ * 长度为V的数组adj[V]表示所有的顶点 0到V-1
+ * adj[i] 表示与顶点i链接的所有的边
  */
 
 public class Graph {
@@ -56,7 +58,7 @@ public class Graph {
         String s = V + " vertices," + E + " edges\n";
         for (int v = 0; v < V; v++) {
             s += v + ":";
-            for (int w : this.adj[v]) {
+            for (int w : adj[v]) {
                 s += w + " ";
             }
             s += "\n" ;
@@ -64,7 +66,7 @@ public class Graph {
         return s ;
     }
 
-    //计算顶点的度
+    //计算顶点的度，即依附于它的边的总数
     public static int degree(Graph G , int v){
         int degree = 0 ;
         for (int w : G.adj(v)){
@@ -94,7 +96,7 @@ public class Graph {
         int count = 0 ;
         for (int v = 0; v < G.V(); v++) {
             for (int w : G.adj(v)){
-                if (w == v){
+                if (w == v){//边中有链接到自己的顶点，说明有一条边
                     count ++ ;
                 }
             }

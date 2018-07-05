@@ -1,23 +1,26 @@
 package com.practice.algorithms;
 
-public class UnionFind {
+public class UnionFindQuickFind {
 
     private int [] id ; //分量id（以触点作为索引）
     private int count;  //分量数量
 
-    public UnionFind(int N){
+    //以整数0~N-1初始化N个触电
+    public UnionFindQuickFind(int N){
         //初始化分量id数组
         count = N ;
         id = new int[N];
         for (int i = 0; i < N; i++) {
-            id[i] = i ;
+            id[i] = i ; //每个触点都构成了一个只有它自己的分量，因此我们将id[i]初始化为i
         }
     }
 
+    //连通分量的个数
     public int count(){
         return count;
     }
 
+    //如果p和q存在于同一个分量中，则返回true
     public boolean connected(int p , int q){
         return find(p) == find(q);
     }
