@@ -1,6 +1,7 @@
 package com.practice.algorithms.Graph;
 
 /**
+ * 无向图的连通分量
  * 使用深度优先搜索找出图中的所有连通分量
  */
 public class CC {

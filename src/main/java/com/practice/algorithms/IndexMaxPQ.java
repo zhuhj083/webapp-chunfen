@@ -1,6 +1,5 @@
 package com.practice.algorithms;
 
-import edu.princeton.cs.algs4.IndexMinPQ;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.NoSuchElementException;
