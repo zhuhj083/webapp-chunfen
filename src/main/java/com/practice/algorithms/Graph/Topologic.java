@@ -17,6 +17,14 @@ public class Topologic {
         }
     }
 
+    public Topologic(EdgeWeightedDigraph G) {
+        DirectedCycle cycleFinder = new DirectedCycle(G);
+        if (!cycleFinder.hasCycle()){
+            DepthFirstOrder dfs = new DepthFirstOrder(G);
+            order = dfs.reversePost();
+        }
+    }
+
     //拓扑有序的所有结点
     public Iterable<Integer> order() {
         return order;
