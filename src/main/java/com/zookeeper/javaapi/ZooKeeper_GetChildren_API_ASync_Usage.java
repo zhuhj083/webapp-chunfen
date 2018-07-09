@@ -1,20 +1,22 @@
-package com.zookeeper;
+package com.zookeeper.javaapi;
 
 import org.apache.zookeeper.*;
+import org.apache.zookeeper.data.Stat;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * ZooKeeper API创建节点，使用同步（Sync）接口
+ * 使用异步API获取子结点列表
  */
-public class ZooKeeper_GetChildren_API_Sync_Uasge implements Watcher {
+public class ZooKeeper_GetChildren_API_ASync_Usage implements Watcher {
+
     private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
     private static ZooKeeper zooKeeper = null;
 
     public static void main(String[] args) throws  Exception{
-        zooKeeper = new ZooKeeper("47.95.120.7:2181",5000,new ZooKeeper_GetChildren_API_Sync_Uasge());
-        String path = "/zk-book";
+        zooKeeper = new ZooKeeper("47.95.120.7:2181",5000,new ZooKeeper_GetChildren_API_ASync_Usage());
+        String path = "/zk-test";
 
         connectedSemaphore.await();
 
@@ -22,8 +24,7 @@ public class ZooKeeper_GetChildren_API_Sync_Uasge implements Watcher {
 
         zooKeeper.create(path+"/c1" ,"".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
 
-        List<String> childrenList = zooKeeper.getChildren(path,true);
-        System.out.println(childrenList);
+        zooKeeper.getChildren(path,true ,new IChildren2Callback(),"I am CTX");
 
         zooKeeper.create(path+"/c2" ,"".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
 
@@ -44,5 +45,12 @@ public class ZooKeeper_GetChildren_API_Sync_Uasge implements Watcher {
                 }
             }
         }
+    }
+}
+
+class IChildren2Callback implements AsyncCallback.Children2Callback{
+    @Override
+    public void processResult(int rc, String path, Object ctx, List<String> children, Stat stat) {
+        System.out.println("Get Children znode result:[response code:"+rc+",param path:"+path+",ctx:"+ctx+",children list:"+children+",stat:"+stat);
     }
 }
