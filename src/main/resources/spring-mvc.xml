@@ -25,6 +25,8 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
+
+
     <bean id="user" class="com.zhj.entity.User">
         <property name="age" value="29"/>
         <property name="name" value="zhj"/>
