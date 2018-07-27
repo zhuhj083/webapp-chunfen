@@ -3,8 +3,6 @@ package com.zhj.controller;
 import com.zhj.entity.Salary;
 import com.zhj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,10 +28,15 @@ public class IndexController {
 
     @RequestMapping(value = "/")
     public  String index(HttpServletRequest request , HttpServletResponse response,@ModelAttribute("salary")Salary salary ,Map<String,Object> map){
-        ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
-        User user = (User) ac.getBean("user");
+        //ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
+        //User user = (User) ac.getBean("user");
+
+        User user  = SpringContextHolder.getBean("user");
+        System.out.println("-------------user.name="+user.getName());
+
         request.setAttribute("user", user);
         map.put("salary", salary);
+
         return "index";
     }
 
@@ -45,8 +48,8 @@ public class IndexController {
         return  "hello";
     }
 
-    private static final double ShebaoJishu = 23118;
-    private static final double GongjijinJishu = 23118;
+    private static final double ShebaoJishu = 25401;
+    private static final double GongjijinJishu = 25401;
 
     private static final double ShebaoJishuChengdu = 15333;
     private static final double GongjijinJishuChengdu = 20972;
