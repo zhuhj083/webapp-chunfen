@@ -1,7 +1,9 @@
 package com.zhj.controller;
 
 import com.zhj.entity.Salary;
+import com.zhj.entity.TestBean;
 import com.zhj.entity.User;
+import com.zhj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,24 +29,48 @@ public class IndexController {
     @Autowired
     public SimpleDateFormat simpleDateFormat ;
 
+    @Autowired
+    public UserService userService;
+
     @RequestMapping(value = "/")
-    public  String index(HttpServletRequest request , HttpServletResponse response,@ModelAttribute("salary")Salary salary ,Map<String,Object> map){
-        //ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
-        //User user = (User) ac.getBean("user");
+    public  String index(HttpServletRequest request , HttpServletResponse response,@ModelAttribute("salary")Salary salary ,Map<String,Object> map ){
+//        ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
+//        User user0 = (User) ac.getBean("user");
 
-        User user  = SpringContextHolder.getBean("user");
-        System.out.println("-------------user.name="+user.getName());
-
-        request.setAttribute("user", user);
-        map.put("salary", salary);
+        TestBean testBean = SpringContextHolder.getBean("testBean");
+        testBean.test();
 
         return "index";
     }
 
+    @RequestMapping("test")
+    @ResponseBody
+    public  String test(){
+        System.out.println(simpleDateFormat.format(new Date()));
+        User user = new User();
+        user.setAge(20);
+        user.setName("张三");
+        user.setSex("男");
+
+        userService.save(user);
+
+        List<User> persons = userService.getUsers();
+        System.out.println("-----------得到所有的user "+ persons.size());
+        for (User u : persons) {
+            System.out.println(u);
+        }
+
+        return  "hello";
+    }
 
     @RequestMapping("hello")
     @ResponseBody
     public  String hello(){
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(simpleDateFormat.format(new Date()));
         return  "hello";
     }

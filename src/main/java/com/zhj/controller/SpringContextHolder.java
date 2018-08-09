@@ -13,14 +13,13 @@ public class SpringContextHolder implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;
-        System.out.println((applicationContext==null) + "-----------");
     }
 
 
     /**
      * 取得存储在静态变量中的ApplicationContext.
      */
-    public ApplicationContext getApplicationContext(){
+    public static ApplicationContext getApplicationContext(){
         return context;
     }
 
