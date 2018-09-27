@@ -16,6 +16,7 @@
 
     <!-- 配置包扫描器 -->
     <context:component-scan base-package="com.zhj.controller"/>
+
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven validator="validator"/>
 
@@ -32,15 +33,12 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
+    <!-- ApplicationContextAware -->
     <bean class="com.zhj.controller.SpringContextHolder" />
 
     <bean class="java.text.SimpleDateFormat" >
         <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
     </bean>
-
-    <aop:aspectj-autoproxy />
-    <bean id="testBean" class="com.zhj.entity.TestBean"/>
-    <bean class="com.zhj.entity.AspectJTest" />
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
@@ -58,5 +56,27 @@
     <bean id="userService" class="com.zhj.service.UserServiceImpl" >
         <property name="dataSource" ref="dataSource" />
     </bean>
+
+    <!-- 容器内事件发布 -->
+    <bean id="methodExecListener" class="com.zhj.event.MethodExecutionEventListener"></bean>
+    <bean id="evtPublisher" class="com.zhj.event.MethodExeuctionEventPublisher"></bean>
+
+
+    <!--基于DTD的AspectJ的自动代理功能启用-->
+    <!--<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />-->
+    <!--基于XSD的AspectJ形式的自动代理功能启用-->
+    <aop:aspectj-autoproxy />
+
+    <bean class="com.zhj.aop.AspectJTest" />
+    <bean class="com.zhj.aop.TestBeanDiscountAspect"/>
+
+    <!-- 以下是基于schema的AOP配置 -->
+    <!-- 使用<aop:config>来代替各种AutoProxyCreator -->
+    <!--<aop:config>-->
+        <!--<aop:pointcut id="aopPointcut" expression="execution(public double com.zhj.entity.TestBean.test())" />-->
+        <!--<aop:advisor advice-ref="testBeanAroundAdviceMethodInterceptor" pointcut-ref="aopPointcut" />-->
+    <!--</aop:config>-->
+
+    <import resource="spring-aop-1.xml"/>
 
 </beans>

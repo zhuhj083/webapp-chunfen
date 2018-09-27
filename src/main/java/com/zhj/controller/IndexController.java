@@ -2,6 +2,7 @@ package com.zhj.controller;
 
 import com.zhj.entity.Salary;
 import com.zhj.entity.TestBean;
+import com.zhj.entity.TestIntroductionBean;
 import com.zhj.entity.User;
 import com.zhj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,6 @@ public class IndexController {
 //        ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
 //        User user0 = (User) ac.getBean("user");
 
-        TestBean testBean = SpringContextHolder.getBean("testBean");
-        testBean.test();
-
         return "index";
     }
 
@@ -72,12 +70,20 @@ public class IndexController {
             e.printStackTrace();
         }
         System.out.println(simpleDateFormat.format(new Date()));
+
+        TestBean testBean = SpringContextHolder.getBean("testBean");
+        double money = testBean.test();
+        System.out.println("hello money="+money);
+
+        ((TestIntroductionBean)testBean).say();
+
         return  "hello";
     }
 
+
+
     private static final double ShebaoJishu = 25401;
     private static final double GongjijinJishu = 25401;
-
     private static final double ShebaoJishuChengdu = 15333;
     private static final double GongjijinJishuChengdu = 20972;
 

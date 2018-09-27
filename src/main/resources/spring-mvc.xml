@@ -45,8 +45,8 @@
         <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
     </bean>
 
-    <bean id="testBean" class="com.zhj.entity.TestBean"/>
-    <bean class="com.zhj.entity.AspectJTest" />
+    <bean id="testBean" class="com.zhj.entity.TestBeanImpl"/>
+    <bean class="com.zhj.aop.AspectJTest" />
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >

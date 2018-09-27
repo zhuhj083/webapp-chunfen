@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+
+    <bean id="testIntroductionBean" class="com.zhj.entity.TestIntroductionBeanImpl"/>
+
+    <bean id="testBean" class="com.zhj.entity.TestBeanImpl">
+        <property name="num" value="20"/>
+        <property name="price" value="80" />
+    </bean>
+
+    <!-- Advice -->
+    <bean id="testBeanAroundAdviceMethodInterceptor" class="com.zhj.aop.TestBeanDiscountMethodInterceptor">
+        <property name="discount" value="90" />
+    </bean>
+    <!-- Pointcut -->
+    <bean id="testPointcut" class="com.zhj.aop.TestPointcut"></bean>
+    <!-- Advisor -->
+    <bean id="advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="testPointcut"/>
+        <property name="advice" ref="testBeanAroundAdviceMethodInterceptor" />
+        <property name="order" value="0"/>
+    </bean>
+
+    <!-- 配置代理 -->
+    <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="testBean">
+        </property>
+        <property name="interfaces" >
+            <list>
+                <value>com.zhj.entity.TestBean</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>advisor1</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置自动代理 -->
+    <!--<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />-->
+
+
+</beans>
