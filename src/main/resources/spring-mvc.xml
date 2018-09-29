@@ -62,9 +62,11 @@
         <property name="minIdle" value="1"/>
     </bean>
 
-    <!-- 配置业务bean -->
-    <bean id="userService" class="com.zhj.service.UserServiceImpl" >
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" >
         <property name="dataSource" ref="dataSource" />
     </bean>
+
+    <!-- 配置业务bean -->
+    <bean id="userService" class="com.zhj.service.UserServiceImpl" />
 
 </beans>

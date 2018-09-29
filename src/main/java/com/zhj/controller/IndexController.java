@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +47,21 @@ public class IndexController {
     public  String test(){
         System.out.println(simpleDateFormat.format(new Date()));
         User user = new User();
-        user.setAge(20);
-        user.setName("张三");
-        user.setSex("男");
-
+        user.setAge(26);
+        user.setName("zhangsan");
+        user.setSex("m");
         userService.save(user);
+
+        List<User> userList = new ArrayList<User>();
+        for (int i = 0; i < 5; i++) {
+            User obj = new User();
+            obj.setAge( 1 + i * 3 );
+            obj.setName( "name"+i );
+            obj.setSex(i % 2 == 0 ? "m":"f");
+            userList.add(obj);
+        }
+        userService.batchSave(userList);
+
 
         List<User> persons = userService.getUsers();
         System.out.println("-----------得到所有的user "+ persons.size());
