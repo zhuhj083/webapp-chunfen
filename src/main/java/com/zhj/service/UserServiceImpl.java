@@ -5,6 +5,8 @@ import com.zhj.mapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -16,6 +18,7 @@ import java.util.List;
  */
 
 
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -29,6 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true,timeout = 20)
     public void batchSave(List<User> userList) {
         jdbcTemplate.batchUpdate("insert into user(`name`,age,sex) VALUES (?,?,?)", new BatchPreparedStatementSetter() {
             @Override
@@ -47,6 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS,readOnly = true,timeout = 20)
     public List<User> getUsers() {
         List<User> list = jdbcTemplate.query("select * from user",new UserRowMapper());
         return list ;
