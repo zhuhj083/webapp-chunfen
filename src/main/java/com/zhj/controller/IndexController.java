@@ -26,6 +26,7 @@ import java.util.Map;
  * Created by zhj on 2018/3/23.
  */
 
+
 @Controller
 public class IndexController {
     @Autowired
@@ -38,6 +39,16 @@ public class IndexController {
     public  String index(HttpServletRequest request , HttpServletResponse response,@ModelAttribute("salary")Salary salary ,Map<String,Object> map ){
 //        ApplicationContext ac = new ClassPathXmlApplicationContext("spring-mvc.xml");
 //        User user0 = (User) ac.getBean("user");
+
+        return "index";
+    }
+
+    @RequestMapping(value = "/testError")
+    public  String testError(HttpServletRequest request , HttpServletResponse response ){
+
+        String hasError = request.getParameter("hasError");
+        if ("true".equals(hasError))
+            throw new RuntimeException("Test error");
 
         return "index";
     }

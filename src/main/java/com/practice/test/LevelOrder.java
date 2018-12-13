@@ -28,7 +28,7 @@ public class LevelOrder {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(root);    //将根结点入队列
         TreeNode current ;
-        TreeNode nLast = root ;
+        TreeNode nLast = root ; //一行的最后一个
         TreeNode last = root ;
         while (!queue.isEmpty() ){
             current = queue.poll();    //取出并删除队列第一个元素

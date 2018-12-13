@@ -5,6 +5,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
        xsi:schemaLocation="
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
@@ -15,7 +16,9 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-4.1.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        http://dubbo.apache.org/schema/dubbo
+        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
     <!-- 配置包扫描器 -->
     <context:component-scan base-package="com.zhj.controller,com.zhj.bean"/>
@@ -98,4 +101,15 @@
     <!--</aop:config>-->
 
     <import resource="spring-aop-1.xml"/>
+
+    <!-- HandlerExceptionResolver的配置 -->
+    <bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" >
+        <property name="defaultErrorView" value="500.default"/>
+        <property name="exceptionMappings" >
+            <props>
+                <prop key="java.lang.RuntimeException">500</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>
